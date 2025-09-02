@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package inventory;
+
+option go_package = "gen/inventory;inventory";
+
+// Inventory item
+message Item {
+  string id = 1;
+  string name = 2;
+  int32 quantity = 3;
+}
+
+// Requests and Responses
+message CreateItemRequest {
+  string name = 1;
+  int32 quantity = 2;
+}
+
+message CreateItemResponse {
+  Item item = 1;
+}
+
+message GetItemRequest {
+  string id = 1;
+}
+
+message GetItemResponse {
+  Item item = 1;
+}
+
+// Service definition
+service InventoryService {
+  rpc CreateItem(CreateItemRequest) returns (CreateItemResponse);
+  rpc GetItem(GetItemRequest) returns (GetItemResponse);
+}
